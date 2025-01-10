@@ -1,5 +1,6 @@
 package cafeboard.board;
 
+import cafeboard.post.Post;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,10 +13,15 @@ public class Board {
 
     private String name;
 
-//    @OneToMany(mappedBy = "board")
-//    private List<Post> posts;
+    @OneToMany(mappedBy = "board")
+    private List<Post> posts;
 
     public Board() {
+    }
+
+    public Board(String name, List<Post> posts) {
+        this.name = name;
+        this.posts = posts;
     }
 
     public Board(String name) {
@@ -37,4 +43,11 @@ public class Board {
         this.name = name;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 }
