@@ -26,6 +26,9 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'io.rest-assured:rest-assured:5.4.0'
+
 }
 
 tasks.named('test') {
