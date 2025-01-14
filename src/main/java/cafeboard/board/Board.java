@@ -11,7 +11,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String title;
 
     @OneToMany(mappedBy = "board")
     private List<Post> posts;
@@ -19,13 +19,13 @@ public class Board {
     public Board() {
     }
 
-    public Board(String name, List<Post> posts) {
-        this.name = name;
+    public Board(String title, List<Post> posts) {
+        this.title = title;
         this.posts = posts;
     }
 
-    public Board(String name) {
-        this.name = name;
+    public Board(String title) {
+        this.title = title;
 //        this.posts = posts;
     }
 
@@ -35,12 +35,12 @@ public class Board {
     }
 
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<Post> getPosts() {
@@ -49,5 +49,9 @@ public class Board {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public void changeTitle(String title) {
+        this.title = title;
     }
 }

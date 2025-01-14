@@ -22,16 +22,27 @@ public class PostService {
         this.boardRepository = boardRepository;
     }
 
-    public void create(PostRequest request) {
-        Board board = boardRepository.findById(request.board()).orElseThrow();
-        postRepository.save(
-                new Post(
-                        request.title(),
-                        request.content(),
-                        board
-                ));
+//    public void create(PostRequest request) {
+//        Board board = boardRepository.findById(request.board()).orElseThrow();
+//        postRepository.save(
+//                new Post(
+//                        request.title(),
+//                        request.content(),
+//                        board
+//                ));
+//    }
+//Todo 테스트코드
+    public PostDetailResponse create(CreatePostRequest request) {
+        Board board = boardRepository.findById(request.boardId())
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 게시판 id: " + request.boardId()));
+        Post post = postRepository.save(new Post(request.title(), request.content(), board));
+        return new PostDetailResponse(
+                post.getId(),
+                post.getTitle(),
+                post.getContent(),
+                post.getCreatedAt(),
+                post.getUpdatedAt());
     }
-
     public PostResponse getbypostId(Long id) {
         Post post = postRepository.findById(id).orElseThrow();
         return new PostResponse(

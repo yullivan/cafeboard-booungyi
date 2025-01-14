@@ -15,7 +15,7 @@ public class PostRestController {
 
     //Todo 게시글 생성
     @PostMapping("/post")
-    public void createPost(@Valid @RequestBody PostRequest  request) {
+    public void createPost(@Valid @RequestBody CreatePostRequest  request) {
         postService.create(request);
     }
 
@@ -40,5 +40,10 @@ public class PostRestController {
     @DeleteMapping("post/{id}")
     public void deltebypostId(@PathVariable Long id) {
         postService.deletbypostid(id);
+    }
+
+    @PostMapping("/posts")
+    public PostDetailResponse create(@RequestBody CreatePostRequest request) {
+        return postService.create(request);
     }
 }
